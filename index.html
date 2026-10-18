@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Thaís & Edilson - 20.04.27</title>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:#f8f5f0; font-family:serif; overflow-x:hidden}
+
+  /* TELA MAIOR */
+  .tela-maior{
+    width:100%; min-height:100vh; background:#f8f5f0;
+    display:flex; justify-content:center; align-items:center;
+    padding:20px;
+  }
+
+  /* SOBRETELA - Onde fica tudo */
+  .sobretela{
+    width:390px; max-width:100%; background:#fff;
+    box-shadow:0 10px 40px rgba(0,0,0,0.1); overflow:hidden;
+  }
+
+  /* CARROSSEL QUE RODA SOZINHO */
+  .carrossel-container{
+    width:100%; overflow:hidden; white-space:nowrap; background:#f8f5f0;
+    padding:10px 0;
+  }
+  .carrossel-track{
+    display:flex; gap:12px;
+    animation: scrollLeft 18s linear infinite;
+    width: max-content;
+  }
+  @keyframes scrollLeft {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+  .carrossel-track img{
+    width:260px; height:340px; object-fit:cover; flex-shrink:0;
+    border-radius:4px;
+  }
+
+  /* FUNDO QUE VOCÊ MARCOU - IGUAL DA FOTO */
+  .fundo-marcado{
+    background:#f8f5f0; padding:40px 20px; text-align:center;
+    border-top:1px dashed #e0d5cc; border-bottom:1px dashed #e0d5cc;
+    position:relative;
+  }
+  .fundo-marcado h2{letter-spacing:6px; font-weight:300; color:#4a3a2a; font-size:22px}
+  .data-lateral{
+    position:absolute; right:12px; top:50%; transform:translateY(-50%) rotate(90deg);
+    letter-spacing:4px; font-size:13px; color:#8a7a6a;
+  }
+
+  .mensagem{padding:25px; text-align:center; font-style:italic; color:#6b5a4a; line-height:1.6}
+  .countdown{display:flex; justify-content:center; gap:8px; padding-bottom:30px}
+  .box{border:1px solid #c9b8a0; width:65px; text-align:center; padding:10px 0}
+</style>
+</head>
+<body>
+
+<div class="tela-maior">
+  <div class="sobretela">
+
+    <!-- FOTOS RODANDO EM CIRCULO SOZINHAS -->
+    <div class="carrossel-container">
+      <div class="carrossel-track">
+        <!-- Suas 3 fotos duplicadas para fazer o circulo infinito -->
+        <img src="IMG_9865.JPG">
+        <img src="IMG_9866.JPG">
+        <img src="IMG_9864.JPG">
+        <!-- duplicado para loop perfeito -->
+        <img src="IMG_9865.JPG">
+        <img src="IMG_9866.JPG">
+        <img src="IMG_9864.JPG">
+      </div>
+    </div>
+
+    <!-- FUNDO IGUAL VOCÊ MARCOU DE VERDE -->
+    <div class="fundo-marcado">
+      <div class="data-lateral">20 04 27</div>
+      <h2>THAIS & EDILSON</h2>
+    </div>
+
+    <!-- SEGUNDA FILEIRA RODANDO AO CONTRÁRIO (OPCIONAL FICA LINDO) -->
+    <div class="carrossel-container">
+      <div class="carrossel-track" style="animation-direction: reverse; animation-duration: 20s;">
+        <img src="IMG_9864.JPG">
+        <img src="IMG_9865.JPG">
+        <img src="IMG_9866.JPG">
+        <img src="IMG_9864.JPG">
+        <img src="IMG_9865.JPG">
+        <img src="IMG_9866.JPG">
+      </div>
+    </div>
+
+    <div class="mensagem">
+      Com muito amor, convidamos vocês para reservar esta data tão especial. A vossa presença tornará o nosso dia inesquecível!
+    </div>
+
+    <div class="countdown">
+      <div class="box"><b id="d">0</b><br><small>DIAS</small></div>
+      <div class="box"><b id="h">0</b><br><small>HORAS</small></div>
+      <div class="box"><b id="m">0</b><br><small>MIN</small></div>
+      <div class="box"><b id="s">0</b><br><small>SEG</small></div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+  const target = new Date("2027-04-20T00:00:00").getTime();
+  setInterval(()=>{
+    const diff = target - Date.now();
+    document.getElementById('d').innerText = Math.floor(diff/86400000);
+    document.getElementById('h').innerText = Math.floor((diff%86400000)/3600000);
+    document.getElementById('m').innerText = Math.floor((diff%3600000)/60000);
+    document.getElementById('s').innerText = Math.floor((diff%60000)/1000);
+  },1000)
+</script>
+
+</body>
+</html>
